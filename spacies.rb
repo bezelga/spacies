@@ -1,43 +1,45 @@
 require 'rubygems'
 require 'sinatra'
-#require 'json'
-#require 'haml'
-#require 'mongoid'
+#db
+require 'mongo_mapper'
+#template
+require 'haml'
+set :haml, :format => :html5
 
 #configure do
-   #Mongoid.configure do |config|
-    #name = "spacies"
-    #host = "localhost"
-    #config.master = Mongo::Connection.new.db(name)
-    #config.slaves = [
-      #Mongo::Connection.new(host, 27017, :slave_ok => true).db(name)
-    #]
-    #config.persist_in_safe_mode = false
-  #end
+  #MongoMapper.config = {
+    #:development => { 'uri' => 'mongodb://localhost/spacies' },
+    #:production => { 'uri' => 'mongodb://bezelga:a3o9y8qt@flame.mongohq.com:27052/spacies' }
+  #}
 #end
 
-#set :haml, :format => :html5
+#configure :development do
+  #MongoMapper.connect(:development)
+#end
 
-get '/' do
-  "hi"
-  #haml :index
+#configure :production do
+  #MongoMapper.connect(:production)
+#end
+
+class Aircraft
+  include MongoMapper::Document
+  key :name, String, :required => true
 end
 
-#get '/stream' do
-  #Stream.new
-#end
+get '/' do
+  haml :index
+end
 
-#get '/aircrafts/:id' do
-  #"hello #{params[:id]}".to_json
-#end
+get '/play' do
+  haml :play 
+end
 
-#post '/aircrafts' do
-  ##create new_aircraft
-#end
+get '/aircrafts' do
+  @aircrafts = Aircraft.all
+  haml :aircrafts
+end
 
-
-#class Stream
-  #def each
-    #100.times {|x| yield "#{x}\n" }
-  #end
-#end
+get '/aircrafts/:name' do
+  Aircraft.create(:name => params[:name])
+  redirect '/aircrafts'
+end
