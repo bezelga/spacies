@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'sinatra'
-require 'json'
-require 'haml'
+#require 'json'
+#require 'haml'
 #require 'mongoid'
 
 #configure do
@@ -16,27 +16,28 @@ require 'haml'
   #end
 #end
 
-set :haml, :format => :html5
+#set :haml, :format => :html5
 
 get '/' do
-  haml :index
+  "hi"
+  #haml :index
 end
 
-get '/stream' do
-  Stream.new
-end
+#get '/stream' do
+  #Stream.new
+#end
 
-get '/aircrafts/:id' do
-  "hello #{params[:id]}".to_json
-end
+#get '/aircrafts/:id' do
+  #"hello #{params[:id]}".to_json
+#end
 
-post '/aircrafts' do
-  #create new_aircraft
-end
+#post '/aircrafts' do
+  ##create new_aircraft
+#end
 
 
-class Stream
-  def each
-    100.times {|x| yield "#{x}\n" }
-  end
-end
+#class Stream
+  #def each
+    #100.times {|x| yield "#{x}\n" }
+  #end
+#end
