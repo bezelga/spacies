@@ -1,10 +1,5 @@
-var x;
-var y;
 $(document).ready(function() {
   drawAircraft();
-  //drawCurveNave();
-  x= 300;
-  y = 300;
   window.addEventListener("keydown", getKey, false);
 });
 
