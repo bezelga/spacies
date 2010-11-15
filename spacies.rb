@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 #db
-require 'mongo_mapper'
+#require 'mongo_mapper'
 #template
 require 'haml'
 set :haml, :format => :html5
