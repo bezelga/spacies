@@ -4,6 +4,7 @@ h1, ul, li  {
 
 body {
 background: black;
+font-family: "Trebuchet"
 }
 
 h1 {
@@ -44,8 +45,11 @@ ul li {
   border: 1px solid red;
 }
 
-
 .invader {
   position: absolute;
-
+  left: 0;
+  top: 200px;
+  width: 40px;
+  height: 40px;
+  background: yellow;
 }

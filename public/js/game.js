@@ -1,7 +1,29 @@
 $(document).ready(function() {
   drawAircraft();
   window.addEventListener("keydown", getKey, false);
+  setInterval("detect();",10);
+  setInterval("moveInvaderRight();",500);
+  setInterval("moveInvaderLeft();",1000);
 });
+
+function detect() {
+  $('.bullet').collidesWith('.invader').each(function(inv) {
+      $(this).fadeOut("slow");
+      //$(this).remove();
+  });
+}
+
+function moveInvaderRight() {
+  $('.invader').animate({
+    left: '-=10' 
+  }, 50);
+}
+
+function moveInvaderRight() {
+  $('.invader').animate({
+    left: '+=10' 
+  }, 50);
+}
 
 function drawAircraft() {
   var canvas=document.getElementById("aircraft");
@@ -41,7 +63,7 @@ function moveLeft() {
 
 function shoot() {
   //$('<div class="bullet" style="left:' + ("#aircraft").position().left + '"></div>').appendTo("#aircraft");
-  $('<div class="bullet" style="top:480px;left:' + ($("#aircraft").position().left + 45) + 'px"></div>').appendTo("#space");
+  $('<div class="bullet" style="top:490px;left:' + ($("#aircraft").position().left + 45) + 'px"></div>').appendTo("#space");
   $('.bullet').animate({
       top: '0'
   }, 2000);
