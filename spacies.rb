@@ -22,8 +22,8 @@ set :haml, :format => :html5
 #end
 
 class Aircraft
-  include MongoMapper::Document
-  key :name, String, :required => true
+  #include MongoMapper::Document
+  #key :name, String, :required => true
 end
 
 get '/' do
@@ -35,11 +35,11 @@ get '/play' do
 end
 
 get '/aircrafts' do
-  @aircrafts = Aircraft.all
+  #@aircrafts = Aircraft.all
   haml :aircrafts
 end
 
 get '/aircrafts/:name' do
-  Aircraft.create(:name => params[:name])
+  #Aircraft.create(:name => params[:name])
   redirect '/aircrafts'
 end

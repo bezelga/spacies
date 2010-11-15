@@ -18,7 +18,7 @@ function drawAircraft() {
  
 	c.lineWidth=10;
 	c.lineJoin="round";
-  c.strokeStyle = "green";
+	c.strokeStyle= "#e325cc"; // line color
 	c.stroke();	
 }
 
@@ -28,7 +28,7 @@ function drawCurveNave() {
   c.moveTo(0,60);
 	c.quadraticCurveTo(50, 0, 100, 60);
 	c.lineWidth=10;
-	c.strokeStyle="pink"; // line color
+	c.strokeStyle= "#e325cc"; // line color
 	c.stroke();	
 }
 
