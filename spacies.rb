@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'sinatra'
 require 'json'
 require 'haml'
@@ -38,3 +39,4 @@ class Stream
   def each
     100.times {|x| yield "#{x}\n" }
   end
+end
