@@ -33,12 +33,12 @@ ul li {
 #aircraft {
   position: absolute;
   left: 600px;
-  top: 480px;
+  top: 600px;
 }
 
 .bullet {
   position: absolute;
-  top: 450px;
+  top: 580px;
   left: 300px;
   height: 10px;
   width: 10px;

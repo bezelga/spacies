@@ -1,3 +1,6 @@
 #space
-  .invader
+  - (0..9).each do |i|
+    .invader{:style => "top:#{i * 50}px"}
+    - (0..9).each do |y|
+      .invader{:style => "left:#{y*50} ;top:#{i * 50}px"}
   %canvas{:id => "aircraft", :width=>"100px", :height => "60px"}

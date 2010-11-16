@@ -63,7 +63,7 @@ function moveLeft() {
 
 function shoot() {
   //$('<div class="bullet" style="left:' + ("#aircraft").position().left + '"></div>').appendTo("#aircraft");
-  $('<div class="bullet" style="top:490px;left:' + ($("#aircraft").position().left + 45) + 'px"></div>').appendTo("#space");
+  $('<div class="bullet" style="top:590px;left:' + ($("#aircraft").position().left + 45) + 'px"></div>').appendTo("#space");
   $('.bullet').animate({
       top: '0'
   }, 2000);
