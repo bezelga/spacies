@@ -34,6 +34,11 @@ get '/play' do
   haml :play 
 end
 
+get '/stages/2' do
+  haml :stage2
+end
+
+
 get '/aircrafts' do
   #@aircrafts = Aircraft.all
   haml :aircrafts

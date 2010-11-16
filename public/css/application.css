@@ -2,6 +2,9 @@ h1, ul, li  {
   text-align: center;
 }
 
+a{
+  text-decoration-none;
+}
 body {
   background: black;
   font-family: “Trebuchet MS”, Helvetica, sans-serif;
@@ -9,12 +12,24 @@ body {
 
 h1 {
   color: #CCFF00;
+  font-size: 48px;
+}
+
+h2 {
+  font-size: 30px;
+  text-align: center;
+}
+
+h2 a {
+  text-decoration: none;
+  color: white;
 }
 
 
 ul li {
   list-style-type: none;
 }
+
 
 #space {
   border: 1px solid black;

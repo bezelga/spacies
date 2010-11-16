@@ -28,6 +28,9 @@ function observeDone() {
     clearInterval(invaders);
     //clearInterval(invadersShoots);
     alert("/stage clear! you can get some extra points shooting the reds coming from space");
+    //if (window.location.match(/play/) ) {
+    window.location = "/stages/2";
+    //}
   }
 }
 
@@ -46,7 +49,8 @@ function detect() {
   $('.invaderBullet').collidesWith('#aircraft').each(function(inv) {
       $(this).fadeOut("slow");
       $(this).remove();
-    alert("game over!");
+      alert("game over!");
+      window.location = "/";
   });
 }
 
