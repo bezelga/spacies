@@ -51,9 +51,11 @@ function detect() {
   });
   $('.invaderBullet').collidesWith('#aircraft').each(function(inv) {
       var air = $(this);
-      $(air).fadeOut("slow",  function() {
-        $(air).remove();
-      });
+      //$(air).fadeOut("slow",  function() {
+      //  $(air).remove();
+      //});
+
+      $(air).remove();
       alert("game over!");
       window.location = "/";
   });
