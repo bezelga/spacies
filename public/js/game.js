@@ -1,22 +1,52 @@
+var score = 0;
 $(document).ready(function() {
   drawAircraft();
   window.addEventListener("keydown", getKey, false);
   setInterval("detect();",10);
-  setInterval("moveInvadersRight();",500);
-  setInterval("invadersShoot();",5000);
-  setInterval("invadersClean();",60000);
+  var invaders = setInterval("moveInvadersRight();",500);
+  var invadersShoots = setInterval("invadersShoot();",3000);
+  setTimeout("invadersClean();",60000);
+  setInterval("cleanInvadersBullets();",10000);
 });
+
+function cleanInvadersBullets() {
+  $('.invaderBullet').fadeOut("slow");
+}
 
 function invadersClean() {
   $('#invaders').fadeOut("slow");
+  clearInterval(invaders);
+}
+
+function updateScore(value) {
+  score += value;
+  $("#score_val").text(score);
+}
+
+function observeDone() {
+  if ($('.invader').length == 0) {
+    clearInterval(invaders);
+    //clearInterval(invadersShoots);
+    alert("/stage clear! you can get some extra points shooting the reds coming from space");
+  }
 }
 
 function detect() {
   $('.bullet').collidesWith('.invader').each(function(inv) {
       $(this).fadeOut("slow");
+      $(this).remove();
+      updateScore(10);
+      observeDone();
+  });
+  $('.bullet').collidesWith('.invaderBullet').each(function(inv) {
+      $(this).fadeOut("slow");
+      $(this).remove();
+      updateScore(20);
   });
   $('.invaderBullet').collidesWith('#aircraft').each(function(inv) {
       $(this).fadeOut("slow");
+      $(this).remove();
+    alert("game over!");
   });
 }
 

@@ -3,8 +3,8 @@ h1, ul, li  {
 }
 
 body {
-background: black;
-font-family: "Trebuchet"
+  background: black;
+  font-family: “Trebuchet MS”, Helvetica, sans-serif;
 }
 
 h1 {
@@ -43,7 +43,7 @@ ul li {
   left: 0px;
   height: 10px;
   width: 10px;
-  border: 1px solid white;
+  border: 1px solid red;
 }
 
 .bullet {
@@ -52,7 +52,7 @@ ul li {
   left: 300px;
   height: 10px;
   width: 10px;
-  border: 1px solid pink;
+  border: 1px solid #e325cc;
 }
 
 .invader {
@@ -62,4 +62,24 @@ ul li {
   width: 40px;
   height: 40px;
   background: yellow;
+}
+
+
+#score {
+  position: absolute;
+  top: 10px;
+  left: 900px;
+  width: 120px;
+  height: 40px;
+  color: #e325cc;
+  font-size: 18px;
+}
+
+#score_label {
+  float: left;
+}
+
+#score_val {
+  float: right;
+  color: #ccff00;
 }
