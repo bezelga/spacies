@@ -2,25 +2,26 @@ $(document).ready(function() {
   drawAircraft();
   window.addEventListener("keydown", getKey, false);
   setInterval("detect();",10);
-  setInterval("moveInvaderRight();",500);
-  setInterval("moveInvaderLeft();",1000);
+  setInterval("moveInvadersRight();",500);
+  setInterval("invadersShoot();",5000);
+  setInterval("invadersClean();",60000);
 });
+
+function invadersClean() {
+  $('#invaders').fadeOut("slow");
+}
 
 function detect() {
   $('.bullet').collidesWith('.invader').each(function(inv) {
       $(this).fadeOut("slow");
-      //$(this).remove();
+  });
+  $('.invaderBullet').collidesWith('#aircraft').each(function(inv) {
+      $(this).fadeOut("slow");
   });
 }
 
-function moveInvaderRight() {
-  $('.invader').animate({
-    left: '-=10' 
-  }, 50);
-}
-
-function moveInvaderRight() {
-  $('.invader').animate({
+function moveInvadersRight() {
+  $('#invaders').animate({
     left: '+=10' 
   }, 50);
 }
@@ -61,8 +62,15 @@ function moveLeft() {
   }, 10);
 }
 
+function invadersShoot() {
+  $('<div class="invaderBullet" style="top:100px;left:' + (Math.random() * 1000) + 'px"></div>').appendTo("#space");
+  $('.invaderBullet').animate({
+      top: '650px'
+  }, 6000);
+
+}
+
 function shoot() {
-  //$('<div class="bullet" style="left:' + ("#aircraft").position().left + '"></div>').appendTo("#aircraft");
   $('<div class="bullet" style="top:590px;left:' + ($("#aircraft").position().left + 45) + 'px"></div>').appendTo("#space");
   $('.bullet').animate({
       top: '0'
