@@ -9,7 +9,6 @@ set :haml, :format => :html5
 #configure do
   #MongoMapper.config = {
     #:development => { 'uri' => 'mongodb://localhost/spacies' },
-    #:production => { 'uri' => 'mongodb://bezelga:a3o9y8qt@flame.mongohq.com:27052/spacies' }
   #}
 #end
 
