@@ -35,20 +35,27 @@ function observeDone() {
 }
 
 function detect() {
-  $('.bullet').collidesWith('.invader').each(function(inv) {
-      $(this).fadeOut("slow");
+  $('.bullet').collidesWith('.invader').each(function() {
+    var inv = $(this);
+    $(inv).collidesWith('.bullet').each(function() {
+      inv.fadeOut("slow", function () { inv.remove(); });
       $(this).remove();
-      updateScore(10);
-      observeDone();
+    });
+    updateScore(10);
+    observeDone();
   });
   $('.bullet').collidesWith('.invaderBullet').each(function(inv) {
-      $(this).fadeOut("slow");
-      $(this).remove();
+      var invbul = $(this);
+      $(invbul).fadeOut("slow", function() { invbul.remove(); } );
       updateScore(20);
   });
   $('.invaderBullet').collidesWith('#aircraft').each(function(inv) {
-      $(this).fadeOut("slow");
-      $(this).remove();
+      var air = $(this);
+      //$(air).fadeOut("slow",  function() {
+      //  $(air).remove();
+      //});
+
+      $(air).remove();
       alert("game over!");
       window.location = "/";
   });
@@ -105,10 +112,12 @@ function invadersShoot() {
 }
 
 function shoot() {
-  $('<div class="bullet" style="top:590px;left:' + ($("#aircraft").position().left + 45) + 'px"></div>').appendTo("#space");
+  $('<div class="bullet" style="top:' + ($("#aircraft").position().top) + 'px;left:' + ($("#aircraft").position().left + 45) + 'px"></div>').appendTo("#space");
   $('.bullet').animate({
-      top: '0'
-  }, 2000);
+      top: '-10'
+  }, 4000, function() { 
+    $(this).remove();
+  });
 }
 
 function getKey() {
@@ -124,22 +133,24 @@ function getKey() {
     switch(keyCode)
     {
         case 32: //space bar
-          //alert($("#aircraft").position().left);
-          //alert($("#aircraft").position().top);
           shoot();
           break;
         case 37: //left
           moveLeft();
           break;
         case 38: //up
-          //y -= 3;
+          $("#aircraft").animate({
+            top: '-=10' 
+          }, 10);
           break;
         case 39: //right
           moveRight();
           break;
         case 40: //down
-            //y += 3;
-            break;
+          $("#aircraft").animate({
+            top: '+=10' 
+          }, 10);
+          break;
     }
 }
 
