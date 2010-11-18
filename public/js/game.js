@@ -1,17 +1,25 @@
 /* INVADER */
-function Invader(left,top) {
+function Invader(id,left,top) {
   this.left = left;
   this.top = top;
+  this.id = id;
 
   this.draw = function(left,top) {
-    $("<div class='invader' style='left:" + left +"px;top:" + top + "'></div>").appendTo("#space");
+    $("<div id='"+ this.id +"' class='invader' style='left:" + left +"px;top:" + top + "'></div>").appendTo("#space");
   }
 
   this.shoot = function() {
     $('<div class="invaderBullet" style="top:' + this.top + 'px;left:' + this.left + 'px"></div>').appendTo("#space");
     $('.invaderBullet').animate({
         top: '650px'
-    }, 6000);
+    }, 5000);
+  }
+
+
+  this.fall = function () {
+    $("#" + this.id).animate({
+        top: '650px' 
+    }, 10000);
   }
 
   //this.move = function() {
@@ -88,6 +96,7 @@ function Aircraft() {
 /* GLOBAL VARS */
 var score = 0;
 var invaders = 1;
+var id = 0;
 var air = new Aircraft();
 /* GLOBAL VARS */
 
@@ -97,8 +106,10 @@ $(document).ready(function() {
   setInterval("detect();",10);
 
   for (i=0;i<=invaders;i++) {
-    var inv = new Invader(Math.random()*1000,Math.random()*500);
-    inv.shoot();
+    id += 1;
+    var inv = new Invader(id,Math.random()*1000,Math.random()*200);
+    //inv.shoot();
+    inv.fall();
   }
   setInterval("cleanInvadersBullets();",10000);
 });
@@ -121,12 +132,12 @@ function updateScore(value) {
 }
 
 function observeDone() {
-  if ($('.invader').length == 1) {
+  if ($('.invader').length == 0) {
     invaders = invaders * 2;
     for (i=0;i<=invaders;i++) {
-      var inv = new Invader(Math.random()*1000,Math.random()*500);
-      //inv.move();
-      inv.shoot();
+      id += 1;
+      var inv = new Invader(id,Math.random()*1000,Math.random()*200);
+      inv.fall();
     }
   }
 }
@@ -135,7 +146,7 @@ function detect() {
   $('.bullet').collidesWith('.invader').each(function() {
     var inv = $(this);
     $(inv).collidesWith('.bullet').each(function() {
-      inv.fadeOut("slow", function () { inv.remove(); });
+      inv.remove();
       $(this).remove();
     });
     updateScore(10);
@@ -153,9 +164,13 @@ function detect() {
 
   $('.invaderBullet').collidesWith('#aircraft').each(function(inv) {
       var air = $(this);
-      air.fadeOut("slow",  function() {
-        air.remove();
-      });
+      air.remove();
+      alert("game over!");
+      window.location = "/";
+  });
+  $('.invader').collidesWith('#aircraft').each(function() {
+      var air = $(this);
+      air.remove();
       alert("game over!");
       window.location = "/";
   });
