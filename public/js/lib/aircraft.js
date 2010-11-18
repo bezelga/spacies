@@ -25,6 +25,20 @@ function Aircraft() {
     });
   }
 
+  this.moveRight = function() {
+    $("#aircraft").animate({
+      left: '+=10' 
+    }, 10);
+  }
+
+  this.moveLeft = function {
+    $("#aircraft").animate({
+      left: '-=10' 
+    }, 10);
+  }
+
+
+
   function addShootListener() {
     $(document).keydown(function(event) {
         if (event.keyCode == 32) {
