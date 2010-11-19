@@ -1,4 +1,3 @@
-/* INVADER */
 function Invader(id,left,top) {
   this.left = left;
   this.top = top;
@@ -17,17 +16,11 @@ function Invader(id,left,top) {
 
 
   this.fall = function () {
-    $("#" + this.id).animate({
-        top: '650px' 
-    }, 10000);
+    var inv = $("#" + this.id);
+    inv.animate({
+        top: '600px' 
+    }, 10000, function() {inv.remove();space.observe();});
   }
-
-  //this.move = function() {
-      //this.animate({
-        //left: '+=10' 
-      //}, 50);
-  //}
 
   this.draw(left,top);
 }
-/* INVADER */

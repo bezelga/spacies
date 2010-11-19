@@ -3,14 +3,18 @@ function Space() {
     $('.invaderBullet').fadeOut("slow");
   }
 
+  this.createInvaders = function(size) {
+    for (i=0;i<=size;i++) {
+      id += 1;
+      var inv = new Invader(id,Math.random()*1000,Math.random()*200);
+      inv.fall();
+    }
+  }
+
   this.observe = function() {
     if ($('.invader').length == 0) {
       invaders = invaders * 2;
-      for (i=0;i<=invaders;i++) {
-        id += 1;
-        var inv = new Invader(id,Math.random()*1000,Math.random()*200);
-        inv.fall();
-      }
+      space.createInvaders(invaders);
     }
   }
 
