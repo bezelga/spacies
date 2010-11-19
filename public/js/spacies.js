@@ -2,12 +2,14 @@
 var invaders = 1;
 var id = 0;
 var air = new Aircraft();
+var space = new Space();
+var score = new Score();
 /* GLOBAL VARS */
 
 /* MAIN */
 $(document).ready(function() {
   air.draw();
-  setInterval("detect();",10);
+  setInterval(function(){space.detect();},10);
 
   for (i=0;i<=invaders;i++) {
     id += 1;
@@ -15,7 +17,7 @@ $(document).ready(function() {
     //inv.shoot();
     inv.fall();
   }
-  setInterval("cleanInvadersBullets();",10000);
+  setInterval(function(){space.cleanBullets();} ,10000);
 });
 /* MAIN */
 

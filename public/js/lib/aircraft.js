@@ -25,20 +25,6 @@ function Aircraft() {
     });
   }
 
-  this.moveRight = function() {
-    $("#aircraft").animate({
-      left: '+=10' 
-    }, 10);
-  }
-
-  this.moveLeft = function {
-    $("#aircraft").animate({
-      left: '-=10' 
-    }, 10);
-  }
-
-
-
   function addShootListener() {
     $(document).keydown(function(event) {
         if (event.keyCode == 32) {
@@ -52,7 +38,10 @@ function Aircraft() {
       switch(event.keyCode)
       {
           case 37: //left
-            moveLeft();
+            //this.moveLeft();
+            $("#aircraft").animate({
+              left: '-=10' 
+            }, 10);
             break;
           case 38: //up
             $("#aircraft").animate({
@@ -60,7 +49,9 @@ function Aircraft() {
             }, 10);
             break;
           case 39: //right
-            moveRight();
+            $("#aircraft").animate({
+              left: '+=10' 
+            }, 10);
             break;
           case 40: //down
             $("#aircraft").animate({

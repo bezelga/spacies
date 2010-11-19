@@ -1,9 +1,9 @@
 function Space() {
-  function cleanInvadersBullets() {
+  this.cleanBullets = function() {
     $('.invaderBullet').fadeOut("slow");
   }
 
-  function observeDone() {
+  this.observe = function() {
     if ($('.invader').length == 0) {
       invaders = invaders * 2;
       for (i=0;i<=invaders;i++) {
@@ -14,15 +14,15 @@ function Space() {
     }
   }
 
-  function detect() {
+  this.detect = function() {
     $('.bullet').collidesWith('.invader').each(function() {
       var inv = $(this);
       $(inv).collidesWith('.bullet').each(function() {
         inv.remove();
         $(this).remove();
       });
-      updateScore(10);
-      observeDone();
+      score.update(10);
+      space.observe();
     });
 
     $('.bullet').collidesWith('.invaderBullet').each(function() {
@@ -31,7 +31,7 @@ function Space() {
           invbul.remove();
           $(this).remove();
         });
-        updateScore(20);
+        score.update(20);
     });
 
     $('.invaderBullet').collidesWith('#aircraft').each(function(inv) {
