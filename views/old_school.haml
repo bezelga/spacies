@@ -1,0 +1,12 @@
+%script{:src => '/js/jquery.js', :type => "text/javascript"}
+%script{:src => '/js/jquery.collision.js', :type => "text/javascript"}
+- ['space','score','aircraft','invader'].each do |js|
+  %script{:src => "/js/lib/#{js}.js", :type => "text/javascript"}
+%script{:src => '/js/spacies.js', :type => "text/javascript"}
+#space
+  #score
+    #score_label
+      Score:
+    #score_val
+      0
+  %canvas{:id => "aircraft", :width=>"100px", :height => "60px"}
