@@ -1,15 +1,13 @@
-/* AIRCRAFT */
+/ AIRCRAFT */
 function Aircraft() {
   addMovementListener();
   addShootListener();
   this.draw = function() {
     var canvas=document.getElementById("aircraft");
     var c=canvas.getContext("2d");
-   
     c.moveTo(0,60);
     c.lineTo(50,0); // line 1
     c.lineTo(100,60); // line 2
-   
     c.lineWidth=10;
     c.lineJoin="round";
     c.strokeStyle= "#e325cc"; // line color
