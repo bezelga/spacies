@@ -1,7 +1,17 @@
 describe("Aircraft", function() {
-  it("should draw ifself with html5 canvas", function() {
-    var air = new Aircraft();
-    //expect(air.draw()) 
+  var air;
+
+  beforeEach(function() {
+    air = new Aircraft();
+  });
+
+  it("should draw itself with html5 canvas", function() {
+    //air.draw();
+  });
+
+  it("should shoot", function() {
+    //air.shoot();
+    expect($(".bullet")).toExist();
   });
 
 });
