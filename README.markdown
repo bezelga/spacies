@@ -8,4 +8,4 @@ Space invaders like in html5, jquery and sinatra
 
 Browsers
 -----------------------
-Currently working properly only Firefox
+Currently working properly only with Firefox and Chrome

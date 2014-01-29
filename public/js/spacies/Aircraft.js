@@ -1,63 +1,63 @@
-/ AIRCRAFT */
+// AIRCRAFT
 function Aircraft() {
-  addMovementListener();
-  addShootListener();
+  var velocity = 10,
+      canvas;
+
+  addKeyListener();
+
   this.draw = function() {
-    var canvas=document.getElementById("aircraft");
-    var c=canvas.getContext("2d");
-    c.moveTo(0,60);
-    c.lineTo(50,0); // line 1
-    c.lineTo(100,60); // line 2
-    c.lineWidth=10;
-    c.lineJoin="round";
-    c.strokeStyle= "#e325cc"; // line color
-    c.stroke();	
+    canvas = document.getElementById("aircraft").getContext("2d");
+    canvas.moveTo(0,60);
+    canvas.lineTo(50,0); // line 1
+    canvas.lineTo(100,60); // line 2
+    canvas.lineWidth=10;
+    canvas.lineJoin="round";
+    canvas.strokeStyle= "#e325cc"; // line color
+    canvas.stroke();
   }
 
   this.shoot = function() {
-    $('<div class="bullet" style="top:' + ($("#aircraft").position().top) + 'px;left:' + ($("#aircraft").position().left + 45) + 'px"></div>').appendTo("#space");
+    var topPosition = $("#aircraft").position().top,
+        leftPosition = $("#aircraft").position().left + 45;
+    $('<div class="bullet" style="top:' + topPosition + 'px;left:' + leftPosition + 'px"></div>').appendTo("#space");
     $('.bullet').animate({
-        top: '-10'
-    }, 4000, function() { 
+        top: -10
+    }, 4000, function() {
       $(this).remove();
     });
   }
 
-  function addShootListener() {
+  function addKeyListener() {
     $(document).keydown(function(event) {
-        if (event.keyCode == 32) {
-          air.shoot();
-        }
-    });
-  }
-
-  function addMovementListener() {
-    $(document).keypress(function(event) {
+      console.log('here', event.keyCode);
       switch(event.keyCode)
       {
-          case 37: //left
-            //this.moveLeft();
-            $("#aircraft").animate({
-              left: '-=10' 
-            }, 10);
-            break;
-          case 38: //up
-            $("#aircraft").animate({
-              top: '-=10' 
-            }, 10);
-            break;
-          case 39: //right
-            $("#aircraft").animate({
-              left: '+=10' 
-            }, 10);
-            break;
-          case 40: //down
-            $("#aircraft").animate({
-              top: '+=10' 
-            }, 10);
-            break;
+        case 32:
+          air.shoot();
+          break;
+        case 37: //left
+          //this.moveLeft();
+          $("#aircraft").animate({
+            left: '-=10'
+          }, velocity);
+          break;
+        case 38: //up
+          $("#aircraft").animate({
+            top: '-=10'
+          }, velocity);
+          break;
+        case 39: //right
+          $("#aircraft").animate({
+            left: '+=10'
+          }, velocity);
+          break;
+        case 40: //down
+          $("#aircraft").animate({
+            top: '+=10'
+          }, velocity);
+          break;
       }
     });
-  }
+  };
 }
 /* AIRCRAFT */
